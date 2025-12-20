@@ -1,0 +1,16 @@
+{
+  "name": "ingroup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --port=5500"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "html5-qrcode": "^2.3.8",
+    "http-server": "^14.1.1",
+    "sweetalert2": "^11.26.4"
+  }
+}

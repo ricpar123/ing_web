@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style type="text/css">
+      *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Varela Round', sans-serif;
+        }
+
+        header{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0px;
+        border-bottom: 1px solid #dedede;
+        margin-bottom: 100px;
+        }
+
+        li{
+        display: column;
+        padding: 0px 20px;
+        list-style: none;
+        }
+
+        a.lista{
+        font-size: 14px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #412666;
+        transition: all 0.3s;
+        }
+
+        a.lista:hover{
+        background: rgb(236, 231, 231);
+        }
+        
+        .logo{
+        width: 200px;
+  
+        }
+    </style>
+        
+</head>
+<body>
+    <header>
+        <img src="../img/ing_logo.png" alt="" class="logo">
+        <nav>
+            <ul>
+                <li><a class="lista" href="listarUsuarios.html">Listar Usuarios</a></li>
+                <li><a class="lista" href="listarClientes.html">Listar Clientes</a></li>
+                <li><a class="lista" href="listarIS.html">Listar Informes de Servicio</a></li>
+                <li><a class="lista" href="cambioScreen.html">Elaborar Informe de Servicio</a></li>  
+            </ul>
+        </nav>
+   </header>
+</body>
+</html>

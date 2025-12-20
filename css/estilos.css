@@ -1,0 +1,246 @@
+:root{
+  --color-primario: rgba(37, 74, 86, 0.70);
+  --color-secundario: rgba(140, 98, 20, 0.9);
+  --color-superpuesto: rgba(9, 9, 9, 0.95);
+  --velocidad-menu: 0.75s;
+}
+
+
+
+/* Reset */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+}
+
+a{
+  color: #333;
+  text-decoration: none;
+}
+
+h1, h2, h3{
+  padding-bottom: 10px 0;
+}
+
+p{
+  margin: 10px 0;
+}
+
+.contenedor{
+  max-width: 960px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 3rem;
+}
+
+#nota{
+  text-decoration-line: underline;
+}
+
+#showcase{
+  background: var(--color-primario);
+  color: white;
+  height: 100vh;
+  position: relative;
+}
+
+#showcase:before{
+  content: '';
+  background: url('../img/fachada.jpg') no-repeat center center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#showcase .showcase-contenedor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+#showcase h1{
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+#showcase p{
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/*Contacto*/
+
+form{
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #c5c5c5d5;
+  padding: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+label, input, textarea{
+  display: block;
+  margin-bottom: 20px;
+}
+
+input, textarea{
+  width: 100%;
+  padding: 10px;
+}
+
+button{
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: #1a4867;
+}
+
+/*empresa*/
+
+#navbar{
+  background: #000;
+  color: #fff;
+  overflow: auto;
+}
+
+
+#navbar a{
+  color: #fff;
+}
+
+#navbar h1{
+  float: left;
+  padding-top: 20px;
+}
+
+#navbar ul{
+  list-style: none;
+  float: right;
+}
+
+#navbar ul li{
+  float: left;
+}
+
+#navbar ul li a{
+  display: block;
+  padding: 20px;
+  text-align: center;
+}
+
+#navbar ul li a:hover,#navbar ul li a.current{
+  background: #1ddd95;
+  color: #000;
+}
+
+
+#about-info .info-right{
+  flex: 0 0 auto;
+}
+
+#about-info .info-right img{
+  display: block;
+  max-width: 350px;
+  width: 100%;
+  height: auto;
+  
+}
+
+#about-info .info-left{
+  flex: 1;
+}
+
+#about-info .contenedor{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+#about-info .cliente{
+  display:  flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+@media (max-width: 768px){
+  .cliente{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cliente-img img{
+   max-width: 100%;
+    
+  }
+}   
+
+.l-heading{
+  font-size: 40px;
+}
+
+/* Footer */
+#main-footer{
+  text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 20px;
+}
+
+.py-3{
+  padding: 20px 0;
+}
+
+.bg-light{
+  background: #f4f4f4;
+  color: #140101;
+}
+
+.cliente {
+  display: flex;
+  align-items: center;       /* Centra verticalmente texto e imagen */
+  justify-content: space-between; /* Opcional: separa texto e imagen */
+  gap: 20px;                 /* Espacio entre texto e imagen */
+  margin-bottom: 40px;       /* Separación entre clientes */
+}
+
+.cliente-info {
+  flex: 1;                   /* Que el texto pueda ocupar todo lo necesario */
+}
+
+.cliente-img {
+  flex: 0 0 auto;            /* La imagen conserva su tamaño */
+}
+
+.cliente-img img {
+  max-width: 350px;          /* Ajustá el ancho máximo de la foto */
+  height: auto;
+  display: block;
+}
+
+
+
+
+ 
+
+
+

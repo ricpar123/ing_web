@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/fotos.css">
+    <title>Fotos</title>
+</head>
+<body>
+
+
+    <div id="fotoModal" class="hidden">
+        <div class="modal-content">
+            <h3>Que tipo de fotos deseas tomar?</h3>
+            <div class="modal-actions">
+                <button type="button" id="btnAntes">Antes</button>
+                <button type="button" id="btnDespues">Despues</button>
+                <button type="button" id="btnCancelar">Cancelar</button>    
+            </div>
+            
+        </div>
+    </div>
+
+    <input
+        type="file"
+        accept="image/*"
+        capture="environment"
+        id="cameraInput"
+        class="hidden"
+    />
+        <!-- Previews -->
+    <div class="preview-zone">
+        <h4>Fotos Antes (máx 3)</h4>
+        <div id="previewAntes" class="preview-grid"></div>
+
+        <h4>Fotos Después (máx 3)</h4>
+        <div id="previewDespues" class="preview-grid"></div>
+    </div>
+
+   
+
+    <script src="./js/fotos.js"></script>
+
+    
+</body>
+</html>
