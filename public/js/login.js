@@ -14,7 +14,9 @@ function login() {
 
     let _body = {userid: nombreUsuario, clave: claveUsuario};
 
-    fetch('http://192.168.100.66:8081/usuarios/log', {
+
+    fetch(`${API_BASE}/usuarios/log`
+, {
         method: "POST",
         body: JSON.stringify(_body),
         headers: {"Content-Type": "application/json"}
@@ -29,13 +31,17 @@ function login() {
           
 
             if(rolUsuario === 'admin'){
-                window.open('./menu.html');
+                window.open('/vistas/menu.html');
             } else {
-                window.open('./cambioScreen.html');
+                window.open('/vistas/cambioScreen.html');
             }
         }
 
     })
+    .catch(err => {
+        console.log('Error en Login', err);
+        alert("Error de conexion o respuesta invalida del servervidor");
+    });
 }
 
 
