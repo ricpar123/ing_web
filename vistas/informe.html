@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="stylesheet" href="/css/informe.css">
+    <title>Informe de Servicio</title>
+   
+</head>
+<body>
+    <h2>Informe de Servicios</h2>
+
+    <form id="formulario">
+
+        <div class="six-columns">
+            <div class="fields">
+                <label for='tecnico'>Seleccionar tecnico (*)</label>
+                <select id="tecnico" class="sel" name="tecnico" multiple size="3" required></select>
+            </div>
+            <div class="fields">
+                <label for='cliente'>Cliente (*)</label>
+                <input id="cliente" type="text" name="cliente" required>
+            </div> 
+            
+
+        </div>
+
+        <div class="six-columns">
+            <div class="fields">
+                <label for='descripcion'>Descripcion</label>
+                <input type="text" id="descripcion" name="descripcion" size="10">
+            </div>
+            <div class="fields">
+                <label for='marca'>Marca</label>
+                <input type="text" id="marca" size="10">
+            </div>
+            <div class="fields">
+                <label for='modelo'>Modelo</label>
+                <input type="text" id="modelo" name="modelo" size="10">
+            </div>
+            <div class="fields">
+                <label for='serie'>Serie</label>
+                <input type="text" id="serie" name="serie" size="10">
+            </div>
+        </div>
+
+        <div class="six-columns">
+            <div class="fields">
+                <label for='inicio'>Fecha (*)</label>
+                <input type="date" name="fecha" id="inicio" size="20" required>
+            </div>
+            <div class="fields">
+                <label for='diasT'>Dias trabajados (*)</label>
+                <input type="text" id="diasT" name="diasT" size="20" required>
+            </div>
+            <div class="fields">
+                <label for='inicio'>Hora de Inicio</label>
+                <input type="time" id="inicio" size="10" name="inicio" required>
+            </div>
+            
+        </div>
+
+        <div class="six-columns">
+            <div class="fields">
+                <label for='motivo'>Motivo de la Visita (*)</label>
+                <input type="text" id="motivo" size="30" name="motivo" required>
+            </div>
+        </div>
+
+        <div class="six-columns">
+            <label for = "Tipo de trabajo">Tipo de trabajo (*)</label>
+            <select class="sel" id="tipoTrabajo" name="tipoTrabajo" required>
+                <option value="montaje">Montaje</option>
+                <option value="garantia">Garantia</option>
+                <option value="contrato">Contrato</option>
+                <option value="facturar">A Facturar</option>
+                <option value="varios">Varios</option>
+            </select>
+           <label for="oferta">Oferta(*)</label>
+            <select class="sel" id="oferta" name="oferta" required>
+                <option value="si">Si</option>                
+                <option value="no">No</option>
+            </select>
+            
+        </div>
+
+        <div class="fields">
+            <label for="destrabajo">Descripcion de los trabajos realizados (*)</label>
+            <textarea id="destrabajo" name="destrabajo" required></textarea>
+        </div>
+
+
+        <div class="fields">
+            <label for="obs">Observaciones</label>
+            <textarea id="obs"></textarea>
+        </div>
+
+        <div class="six-columns">
+            <div class="fields">
+                <label for='recibido'>Trabajo recibido por</label>
+                <input type="text" id="recibido" name='recibido' required>
+            </div>
+            
+            <div class="fields">
+                <label for='status'>Status (*)</label>
+                <select class="sel" id="status" name="status" required>
+                    <option value="finalizado">Finalizado</option>
+                    <option value="pendiente">Pendiente</option>
+                </select>
+                
+            </div>
+            <div class="fields">
+               <label for="repuestos">Necesita repuestos ? </label>
+                <select class="sel" id="repuestos" name="repuestos">
+                    <option value="si">Si</option>                
+                    <option value="no">No</option>
+                </select> 
+            </div>  
+        </div>
+
+        <div>
+            <label for="firma">Firma del Cliente (*)</label>
+            <input id="firma" class="wrapper" type="hidden">
+        </div>
+        <div id="signature1" class="signature">
+            <canvas></canvas>
+        </div>
+        <button type="button" onclick="signatureClear1()">Borrar Firma de Cliente</button>
+
+
+        <div>
+            <label for="firmaT">Firma del Tecnico (*)</label>
+            <input id="firmaT" class="wrapper" type="hidden">
+        </div>
+        <div id="signature2" class="signature">
+            <canvas></canvas>
+        </div>
+        <button type="button" onclick="signatureClear2()">Borrar Firma de Tecnico</button>
+
+        
+        <div class="six-columns">
+            <div class="btn">
+			    <button type="submit" >Enviar</button>
+		    </div>
+            <div class="btn">
+			    <button onclick="" >Enviar</button>
+		    </div>
+
+        </div>    
+
+
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.3.5/signature_pad.min.js" defer></script>
+    
+  
+    
+   <!-- <script src="../js/auth.js"></script>-->
+   <script src="/js/informe.js" defer></script>
+</body>
+</html>

@@ -113,33 +113,10 @@ button:hover{
         text-align: center;
         line-height: 30px;
         font-size: 12px;
-        color: rgb(17, 1, 1);
+        color: rgb(66, 62, 62);
     
 }
 
-.wrapper {
-    border: 1px solid #4b00ff;
-    border-right: 0;
-}
-
-canvas { 
-        width: 400px;
-        height: 200px;
-        border: 1px solid #000;
-        background-color: #fff;
-    }
-
-    .signature {
-    background: #fff;
-    position: relative;
-    width: 400px;
-    height: 200px;
-    cursor: crosshair;
-}
 
 
-#tipotrabajo, #oferta {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+

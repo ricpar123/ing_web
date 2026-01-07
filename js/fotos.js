@@ -32,6 +32,7 @@ console.log(('JS se ha cargado correctamente.'));
 
   // UI refs
   const btnFotos = document.getElementById("btnFotos");
+  btnFotos.addEventListener("click", () => abrirModal());
   /*
   const fotoModal = document.getElementById("fotoModal");
   
