@@ -140,15 +140,40 @@
         <button type="button" onclick="signatureClear2()">Borrar Firma de Tecnico</button>
 
         
-        <div class="six-columns">
-            <div class="btn">
-			    <button type="submit" >Enviar</button>
-		    </div>
-            <div class="btn">
-			    <button onclick="" >Enviar</button>
-		    </div>
+       <div class="six-columns">
+                <div class="fields">
+                    <div class="btn">
+			            <button type="submit" >Enviar</button>
+                    </div>
+                </div>
 
-        </div>    
+                <div class="fields">
+                    <div class="btn">
+			            <button id="btnFotos" type="button">Fotos</button>
+                    </div>
+                </div>
+            </div>
+        <!--Modal Fotos -->
+            <div id="fotoModal" class="hidden">
+                <div class="modal-content">
+                    <h3>Que tipo de fotos deseas tomar?</h3>
+                    <div class="modal-actions">
+                        <button type="button" id="btnAntes">Antes</button>
+                        <button type="button" id="btnDespues">Despues</button>
+                        <button type="button" id="btnCancelar">Cancelar</button>    
+                    </div>
+                    
+                </div>
+            </div>
+        <input type="file" accept="image/*" capture="environment" id="cameraInput" class="hidden">
+
+        <div class="preview-zone">
+            <h4>Fotos ANTES (máx 3)</h4>
+            <div id="previewAntes" class="preview-grid"></div>
+
+            <h4>Fotos DESPUÉS (máx 3)</h4>
+            <div id="previewDespues" class="preview-grid"></div>
+        </div>
 
 
     </form>
@@ -157,6 +182,7 @@
   
     
    <!-- <script src="../js/auth.js"></script>-->
+   <script src="/js/fotos.js" defer></script>
    <script src="/js/informe.js" defer></script>
 </body>
 </html>

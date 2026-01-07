@@ -1,158 +1,138 @@
 console.log(('JS se ha cargado correctamente.'));
+console.log("INIT fotos.js", Date.now());
+
+if (window.__fotosInicializado) {
+  console.warn("fotos.js ya estaba inicializado, evitando doble init");
+} else {
+  window.__fotosInicializado = true;
   
   document.addEventListener("DOMContentLoaded", () => {
-  const fotoModal   = document.getElementById("fotoModal");
-  const btnAntes    = document.getElementById("btnAntes");
-  const btnDespues  = document.getElementById("btnDespues");
-  const btnCancelar = document.getElementById("btnCancelar");
+    // Arrays (File objects)
+    const fotosAntes = [];
+    const fotosDespues = [];
+    let modoActual = null; // "ANTES" | "DESPUES"
 
- 
+    const btnFotos = document.getElementById("btnFotos");
+    const fotoModal   = document.getElementById("fotoModal");
+    const btnAntes    = document.getElementById("btnAntes");
+    const btnDespues  = document.getElementById("btnDespues");
+    const btnCancelar = document.getElementById("btnCancelar");
+    const cameraInput = document.getElementById("cameraInput");
+    const previewAntes = document.getElementById("previewAntes");
+    const previewDespues = document.getElementById("previewDespues");
 
-  console.log({ fotoModal, btnAntes, btnDespues, btnCancelar });
+    if (!btnFotos || !fotoModal || !btnAntes || !btnDespues || !btnCancelar || !cameraInput || !previewAntes || !previewDespues) {
+      console.error("Faltan elementos del DOM para fotos. Revisá ids en informe.html");
+      return;
+    }
 
-  if (!fotoModal || !btnAntes || !btnDespues || !btnCancelar) {
-    console.error("Faltan elementos del modal en el DOM. Revisá IDs o duplicados.");
-    return;
-  }
+  
 
+  
   window.abrirModal = () => fotoModal.classList.remove("hidden");
   window.cerrarModal = () => fotoModal.classList.add("hidden");
 
-  btnCancelar.addEventListener("click", cerrarModal);
-  btnAntes.addEventListener("click", () => alert("Antes"));
-  btnDespues.addEventListener("click", () => alert("Después"));
-});
-
-
-// Arrays pedidos (File objects)
-  const fotosAntes = [];    // 0..2
-  const fotosDespues = [];  // 0..2
-
-  let modoActual = null; // "ANTES" | "DESPUES"
-
-  // UI refs
-  const btnFotos = document.getElementById("btnFotos");
-  btnFotos.addEventListener("click", () => abrirModal());
-  /*
-  const fotoModal = document.getElementById("fotoModal");
-  
-  const btnAntes = document.getElementById("btnAntes");
-  const btnDespues = document.getElementById("btnDespues");
-  const btnCancelar = document.getElementById("btnCancelar");
-  */
-  const cameraInput = document.getElementById("cameraInput");
-
-  const previewAntes = document.getElementById("previewAntes");
-  const previewDespues = document.getElementById("previewDespues");
-
-  // --- Modal helpers ---
-  function abrirModal() { fotoModal.classList.remove("hidden") }
-  function cerrarModal() { fotoModal.classList.add("hidden") }
-
   // --- Preview helpers ---
-  function renderPreviews() {
-    previewAntes.innerHTML = "";
-    fotosAntes.forEach((file, idx) => {
-    previewAntes.appendChild(crearThumb(file, "ANTES", idx));
-    });
+    function renderPreviews() {
+      previewAntes.innerHTML = "";
+      fotosAntes.forEach((file, idx) => {
+        previewAntes.appendChild(crearThumb(file, "ANTES", idx));
+      });
 
-    previewDespues.innerHTML = "";
-    fotosDespues.forEach((file, idx) => {
-      previewDespues.appendChild(crearThumb(file, "DESPUES", idx));
-    });
-  }
-
-  function crearThumb(file, tipo, idx) {
-    const div = document.createElement("div");
-    div.className = "thumb";
-
-    const img = document.createElement("img");
-    img.alt = `${tipo} ${idx}`;
-    img.src = URL.createObjectURL(file);
-
-    const del = document.createElement("button");
-    del.type = "button";
-    del.textContent = "X";
-    del.addEventListener("click", () => {
-      if (tipo === "ANTES") fotosAntes.splice(idx, 1);
-      else fotosDespues.splice(idx, 1);
-      renderPreviews();
-    });
-
-    div.appendChild(img);
-    div.appendChild(del);
-    return div;
-  }
-
-  // --- Lógica principal ---
-  //btnFotos.addEventListener("click", () => abrirModal());
-
-  
-  btnAntes.addEventListener("click", () => iniciarCaptura("ANTES"));
-  btnDespues.addEventListener("click", () => iniciarCaptura("DESPUES"));
-  btnCancelar.addEventListener("click", () => { cerrarModal() });
-
-  function iniciarCaptura(modo) {
-    modoActual = modo;
-
-    // Chequeo de límite ANTES de abrir cámara
-    if (modoActual === "ANTES" && fotosAntes.length >= 3) {
-      alert("Has alcanzado el número máximo de fotos ANTES (3).");
-      return;
+      previewDespues.innerHTML = "";
+      fotosDespues.forEach((file, idx) => {
+        previewDespues.appendChild(crearThumb(file, "DESPUES", idx));
+      });
     }
-    if (modoActual === "DESPUES" && fotosDespues.length >= 3) {
-      alert("Has alcanzado el número máximo de fotos DESPUÉS (3).");
-      return;
+    function crearThumb(file, tipo, idx) {
+      const div = document.createElement("div");
+      div.className = "thumb";
+
+      const img = document.createElement("img");
+      img.alt = `${tipo} ${idx + 1}`;
+      img.src = URL.createObjectURL(file);
+
+      const del = document.createElement("button");
+      del.type = "button";
+      del.textContent = "X";
+      del.addEventListener("click", () => {
+        if (tipo === "ANTES") fotosAntes.splice(idx, 1);
+        else fotosDespues.splice(idx, 1);
+        renderPreviews();
+      });
+
+      div.appendChild(img);
+      div.appendChild(del);
+      return div;
     }
 
-    cerrarModal();
 
-    // Reset para que si sacan la misma foto/archivo vuelva a disparar change
-    cameraInput.value = "";
-    cameraInput.click();
-  }
+// --- Captura (UNA sola función) ---
+    function iniciarCaptura(modo) {
+      modoActual = modo;
 
-  cameraInput.addEventListener("change", (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validación básica
-    if (!file.type.startsWith("image/")) {
-      alert("El archivo seleccionado no es una imagen.");
-      return;
-    }
-
-    if (modoActual === "ANTES") {
-      if (fotosAntes.length >= 3) {
+      // chequeo límite antes de abrir cámara
+      if (modoActual === "ANTES" && fotosAntes.length >= 3) {
         alert("Has alcanzado el número máximo de fotos ANTES (3).");
         return;
       }
-      // Renombrado lógico (no cambia el nombre real del File en todos los navegadores)
-      // Guardamos el File y el índice determina fotosAntes[i]
-      fotosAntes.push(file);
-
-    } else if (modoActual === "DESPUES") {
-      if (fotosDespues.length >= 3) {
+      if (modoActual === "DESPUES" && fotosDespues.length >= 3) {
         alert("Has alcanzado el número máximo de fotos DESPUÉS (3).");
         return;
       }
-      fotosDespues.push(file);
 
-    } else {
-      // Si por algún motivo no hay modo
-      alert("Primero elige si la foto es ANTES o DESPUÉS.");
-      return;
+      cerrarModal();
+      cameraInput.value = ""; // reset
+      cameraInput.click();
     }
+// --- Eventos botones ---
+    btnFotos.addEventListener("click", abrirModal);
 
-    // Actualiza UI
+    btnCancelar.addEventListener("click", () => {
+      modoActual = null;
+      cerrarModal();
+    });
+
+    btnAntes.addEventListener("click", () => iniciarCaptura("ANTES"));
+    btnDespues.addEventListener("click", () => iniciarCaptura("DESPUES"));
+
+
+    btnAntes.addEventListener("click", () => iniciarCaptura("ANTES"));
+    btnDespues.addEventListener("click", () => iniciarCaptura("DESPUES"));
+
+    // --- Change (UN solo listener) ---
+    cameraInput.addEventListener("change", (e) => {
+      console.log("camera change fired");
+
+      const files = e.target.files;
+      if (!files || files.length === 0) return;
+
+      // clave para móvil: tomar el ÚLTIMO
+      const file = files[files.length - 1];
+      if (!file) return;
+
+      if (!file.type || !file.type.startsWith("image/")) {
+        alert("El archivo seleccionado no es una imagen.");
+        cameraInput.value = "";
+        return;
+      }
+
+      if (modoActual === "ANTES") {
+        fotosAntes.push(file);
+      } else if (modoActual === "DESPUES") {
+        fotosDespues.push(file);
+      } else {
+        alert("Primero elige si la foto es ANTES o DESPUÉS.");
+        cameraInput.value = "";
+        return;
+      }
+
+      renderPreviews();
+      cameraInput.value = ""; // limpiar
+    });
+
+    // Inicial
     renderPreviews();
   });
-
-  // Inicial
-  renderPreviews();
-
-  // --- TIP para tu botón ENVIAR ---
-  // Cuando vayas a enviar a Express, usa FormData y adjunta así:
-  // fotosAntes.forEach((f, i) => formData.append(`fotosAntes[${i}]`, f, `fotosAntes[${i}].jpg`));
-  // fotosDespues.forEach((f, i) => formData.append(`fotosDespues[${i}]`, f, `fotosDespues[${i}].jpg`));
+}
 
