@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/qrcode.css">
     <title>Leer QRcode</title>
+    <style>
+    body { font-family: sans-serif; padding: 12px; }
+    #reader { width: 320px; max-width: 95vw; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Escanear Código QR</h1>
-        <div class="section">
-            <div id="qr-reader">  
-            </div>
-       
-        </div>
-    </div>
- 
-<script
+    <h2>Lector de Codigo QR</h2>
+    <div id="reader" style="width:320px; max-width: 95vw;"></div>
+    <script
         src="https://unpkg.com/html5-qrcode">
     </script>
     <script src="/js/qrcode.js"></script>
+ 
 
 </body>
 </html>
