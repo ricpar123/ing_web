@@ -28,9 +28,13 @@ if (window.__fotosInicializado) {
 
   
 
-  
-  window.abrirModal = () => fotoModal.classList.remove("hidden");
-  window.cerrarModal = () => fotoModal.classList.add("hidden");
+
+  function abrirModal() {
+    fotoModal.classList.remove("hidden");
+  }
+  function cerrarModal() {
+    fotoModal.classList.add("hidden");
+  }
 
   // --- Preview helpers ---
     function renderPreviews() {
@@ -92,10 +96,6 @@ if (window.__fotosInicializado) {
       modoActual = null;
       cerrarModal();
     });
-
-    btnAntes.addEventListener("click", () => iniciarCaptura("ANTES"));
-    btnDespues.addEventListener("click", () => iniciarCaptura("DESPUES"));
-
 
     btnAntes.addEventListener("click", () => iniciarCaptura("ANTES"));
     btnDespues.addEventListener("click", () => iniciarCaptura("DESPUES"));

@@ -19,6 +19,20 @@ html, body{
   line-height: 1.4;
 }
 
+h4{
+    font-style: italic;
+    color: white;
+    text-align: center;
+
+}
+h2{
+    font-style: italic;
+    color: blue;
+    text-align: center;
+
+}
+
+
 a{
   color: #333;
   text-decoration: none;
