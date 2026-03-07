@@ -1,6 +1,12 @@
 console.log(('JS se ha cargado correctamente.'));
 console.log("INIT fotos.js", Date.now());
 
+    const fotosAntes = [];
+    const fotosDespues = [];
+
+    window.fotosAntes = fotosAntes;
+    window.fotosDespues = fotosDespues;
+
 if (window.__fotosInicializado) {
   console.warn("fotos.js ya estaba inicializado, evitando doble init");
 } else {
@@ -8,8 +14,7 @@ if (window.__fotosInicializado) {
   
   document.addEventListener("DOMContentLoaded", () => {
     // Arrays (File objects)
-    const fotosAntes = [];
-    const fotosDespues = [];
+    
     let modoActual = null; // "ANTES" | "DESPUES"
 
     const btnFotos = document.getElementById("btnFotos");

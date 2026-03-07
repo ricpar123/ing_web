@@ -36,7 +36,7 @@ let usuarios = [];
 
 async function fetchUsuarios(){
    
-    const res = await fetch('https://servering-production.up.railway.app/usuarios/tabla', 
+    const res = await fetch('http://localhost:8081/usuarios', 
         {
             method: "GET",
             headers: {"auth": "auth"}
@@ -158,46 +158,36 @@ formulario.addEventListener('submit', async (e) => {
         return obj;
     }
     
-    
-   const res = await fetch(`${API_BASE}/usuarios/informes`, {
+    const formData = new FormData();
+    //Parte 1: datos del formulario
+    formData.append('data', JSON.stringify(datos));
+    //Parte 2: fotos
+    const antes = window.fotosAntes || [];
+    const despues = window.fotosDespues || [];
+
+    antes.forEach((file) => { formData.append('fotosAntes', file); });
+    despues.forEach((file) => { formData.append('fotosDespues', file); });
+
+    const res = await fetch('http://localhost:8081/informes', {
         method: "POST",
-        body : JSON.stringify(_body),
-        headers: {"Content-Type": "application/json"}
+        body : formData,
+        
     });
 
-    const data = await res.json();
-    console.log('respuesta del servidor:', data);
+    if(!res.ok){
+        const t = await res.text();
+        console.error("HTTP ERROR:", res.status, t);
+        alert("Error enviando informe");
+        return;
+};
 
-    
+const data = await res.json();
+console.log("respuesta del servidor:", data);
+  
     });
        
-    
+ 
 
     
 
     
-// Detectar cambios de conexión
-/*
-
-function isOnline() {
-
-    if ( navigator.onLine ) {
-        // tenemos conexión
-        console.log('online');
-        alert('Online')
-
-
-    } else{
-        // No tenemos conexión
-       alert('Offline')
-    }
-
-}
-
-window.addEventListener('online', isOnline );
-window.addEventListener('offline', isOnline );
-
-isOnline();
-
-*/
-

@@ -1,62 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
-    <style type="text/css">
-      *{
-        margin: 0;
-        padding: 0;
-        font-family: 'Varela Round', sans-serif;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/menuOpciones.css">
+        <title>Menu de Opciones</title>
+    </head>
+    <body>
+        <div class="panel-container">
 
-        header{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 10px 0px;
-        border-bottom: 1px solid #dedede;
-        margin-bottom: 100px;
-        }
+            <h1>Panel de Funcionarios</h1>
+                <p class="usuario">Bienvenido <span id="usuarioNombre"></span></p>
 
-        li{
-        display: column;
-        padding: 0px 20px;
-        list-style: none;
-        }
+            <div class="menu-grid">
 
-        a.lista{
-        font-size: 14px;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: #412666;
-        transition: all 0.3s;
-        }
+                <button onclick="irInforme()">📄 Elaborar Informe</button>
 
-        a.lista:hover{
-        background: rgb(236, 231, 231);
-        }
-        
-        .logo{
-        width: 200px;
-  
-        }
-    </style>
-        
-</head>
-<body>
-    <header>
-        <img src="/img/ing_logo.png" alt="" class="logo">
-        <nav>
-            <ul>
-                <li><a class="lista" href="listarUsuarios.html">Listar Usuarios</a></li>
-                <li><a class="lista" href="listarClientes.html">Listar Clientes</a></li>
-                <li><a class="lista" href="listarIS.html">Listar Informes de Servicio</a></li>
-                <li><a class="lista" href="cambioScreen.html">Elaborar Informe de Servicio</a></li>  
-            </ul>
-        </nav>
-   </header>
-</body>
+                <button onclick="listarInformes()">📑 Listar Informes</button>
+
+                <button onclick="listarUsuarios()">👤 Usuarios</button>
+
+                <button onclick="listarClientes()">🏢 Clientes</button>
+
+                <button onclick="nuevoCertificado()">⚙️ Nuevo Certificado</button>
+
+                <button onclick="listarCertificados()">📊 Certificados</button>
+
+            </div>
+
+                <button class="logout" onclick="logout()">Cerrar sesión</button>
+
+            </div>
+    </body>
 </html>

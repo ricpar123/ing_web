@@ -1,1 +1,1 @@
-window.API_BASE = "https://servering-production.up.railway.app";
+window.API_BASE = "http://localhost:8081";

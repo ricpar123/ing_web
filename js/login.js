@@ -2,8 +2,8 @@
 
 
 function login() {
-    let nombreUsuario = document.getElementById("username").value;
-    let claveUsuario = document.getElementById("password").value;
+    let nombreUsuario = document.getElementById("userid").value;
+    let claveUsuario = document.getElementById("clave").value;
     let rolUsuario = '';
     let statusUsuario = '';
 
@@ -15,8 +15,8 @@ function login() {
     let _body = {userid: nombreUsuario, clave: claveUsuario};
 
 
-    fetch(`${API_BASE}/usuarios/log`
-, {
+    fetch(`${API_BASE}/usuarios/log`, 
+ {
         method: "POST",
         body: JSON.stringify(_body),
         headers: {"Content-Type": "application/json"}
@@ -40,7 +40,7 @@ function login() {
     })
     .catch(err => {
         console.log('Error en Login', err);
-        alert("Error de conexion o respuesta invalida del servervidor");
+        alert("Error de conexion o respuesta invalida del servidor");
     });
 }
 
