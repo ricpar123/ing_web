@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Servicios</title>
+    <style>
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      color: #000;
+      background: #fff;
+    }
+
+    .hoja {
+      width: 100%;
+      max-width: 190mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .encabezado {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .encabezado img {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 6px auto;
+    }
+
+    .datos-empresa {
+      font-size: 12px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .titulo {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      border: 1px solid #000;
+      padding: 8px;
+      margin: 10px 0 14px 0;
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 6px 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .grid-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .campo {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      min-height: 34px;
+    }
+
+    .campo b {
+      display: inline-block;
+      min-width: 110px;
+    }
+
+    .bloque {
+      border: 1px solid #000;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .bloque h3 {
+      margin: 0 0 6px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .texto-largo {
+      min-height: 70px;
+      white-space: pre-wrap;
+    }
+
+    .firmas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .firma-box {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: center;
+      min-height: 150px;
+    }
+
+    .firma-box h4 {
+      margin: 0 0 8px 0;
+      font-size: 13px;
+    }
+
+    .firma-box img {
+      max-width: 100%;
+      max-height: 90px;
+      object-fit: contain;
+    }
+
+    .fotos-box {
+      border: 1px solid #000;
+      padding: 8px;
+      margin-top: 10px;
+    }
+
+    .fotos-box h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .foto-item img {
+      width: 100%;
+      border: 1px solid #999;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="hoja">
+
+    <div class="encabezado">
+      <img id="logoEmpresa" alt="INGROUP SRL" />
+      <div class="datos-empresa">
+        Ruta PY 02 Mcal. Estigarribia Km 14,5 Capiatá - Paraguay<br>
+        Tel: (+595 21) 236 9286 / (+595 972) 496 790<br>
+        ingroupsrlpy@gmail.com
+      </div>
+    </div>
+
+    <div class="titulo">INFORME DE SERVICIO TECNICO</div>
+
+    <div class="grid-2">
+      <div class="campo"><b>Nº:</b> <span id="numero"></span></div>
+      <div class="campo"><b>Técnico:</b> <span id="tecnicos"></span></div>
+
+      <div class="campo"><b>Cliente:</b> <span id="cliente"></span></div>
+      <div class="campo"><b>Equipo / Marca:</b> <span id="equipoMarca"></span></div>
+
+      <div class="campo"><b>Modelo / Serie:</b> <span id="modeloSerie"></span></div>
+      <div class="campo"><b>Motivo:</b> <span id="motivo"></span></div>
+
+      <div class="campo"><b>Tipo trabajo:</b> <span id="tipoTrabajo"></span></div>
+      <div class="campo"><b>Presupuesto:</b> <span id="presupuesto"></span></div>
+    </div>
+
+    <div class="grid-3">
+      <div class="campo"><b>Fecha:</b> <span id="fecha"></span></div>
+      <div class="campo"><b>Hora inicio:</b> <span id="horaInicio"></span></div>
+      <div class="campo"><b>Hora término:</b> <span id="horaFin"></span></div>
+    </div>
+
+    <div class="bloque">
+      <h3>Servicio Realizado</h3>
+      <p id="servicio"></p>
+    </div>
+
+    <div class="bloque">
+      <h3>Observaciones</h3>
+      <p id="obs"></p>
+    </div>
+
+    
+
+    <div class="grid-3">
+      <div class="campo"><b>Recibido por:</b> <span id="recibido"></span></div>
+      <div class="campo"><b>Status:</b> <span id="status"></span></div>
+      <div class="campo"><b>Repuestos:</b> <span id="repuesto"></span></div>
+    </div>
+
+    <div class="firmas">
+      <div class="firma-box">
+        <h4>Firma del Cliente</h4>
+        <img id="firmaCliente" alt="Firma Cliente" />
+      </div>
+
+      <div class="firma-box">
+        <h4>Firma del Técnico</h4>
+        <img id="firmaTecnico" alt="Firma Técnico" />
+      </div>
+    </div>
+
+    <div class="bloque">
+      <h3>Links de las fotos tomadas</h3>
+      <ul id="listaLinks"></ul>
+    </div>
+
+  </div>
+  <button onclick="window.print()">Imprimir / Guardar PDF</button>
+
+  <script src="/js/config.js" defer></script>
+  <script src="../js/pdf_informe.js"></script>
+
+
+
+
+
+<!--
+    <h2>Informe de Servicio</h2>
+        <div>
+            <p><b>Número:</b> <span id="numero"></span></p>
+            <p><b>Cliente:</b> <span id="cliente"></span></p>
+            <p><b>Equipo:</b> <span id="equipo"></span></p>
+            <p><b>Marca:</b> <span id="marca"></span></p>
+            <p><b>Modelo:</b> <span id="modelo"></span></p>
+            <p><b>Serie:</b> <span id="serie"></span></p>
+            <p><b>Motivo de la visita:</b> <span id="motivo"></span></p>
+            <p><b>Tipo de trabajo:</b> <span id="tipo"></span></p>
+            <p><b>Presupuesto:</b> <span id="presupuesto"></span></p>
+            <p><b>Fecha:</b> <span id="fecha"></span></p>
+            <p><b>DiasT:</b> <span id="DiasT"></span></p>
+            <p><b>Hora de inicio:</b> <span id="inicio"></span></p>
+            <p><b>Hora de termino:</b> <span id="termino"></span></p>
+        </div>
+    <h3>Servicio realizado</h3>
+        <p id="servicio"></p>
+
+    <h3>Observaciones</h3>
+        <p id="obs"></p>
+    
+    <h3>Recibido por:</h3>
+        <p id="recibido"></p>
+    <h3>Status:</h3>
+        <p id="status"></p>
+    <h3>Repuestos?:</h3>
+        <p id="repuestos"></p>
+    
+    
+
+    <h3>Firmas</h3>
+
+<div>
+  <p>Técnico</p>
+  <img id="firmaTecnico" style="width:250px">
+</div>
+
+<div>
+  <p>Cliente</p>
+  <img id="firmaCliente" style="width:250px">
+</div>
+
+<h3>Fotos Tomadas</h3>
+        <p id="fotos"></p>
+
+<script src="../js/pdf_informe.js"></script>
+-->        
+    
+</body>
+</html>
