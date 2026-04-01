@@ -1,4 +1,4 @@
-.hidden { display: none; }
+.hidden { display: none !important; }
 
 .modal {
   position: fixed; inset: 0;
@@ -9,18 +9,31 @@
 .modal-content {
   width: min(420px, 92vw);
   background: #fff;
-  padding: 16px;
+  padding: 20px;
   border-radius: 12px;
+  text-align: center;
 }
 .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 
 .preview-zone { margin-top: 16px; }
 .preview-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   gap: 10px;
-  margin: 8px 0 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
 }
+
+.preview-grid img {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border: 1px solid #999;
+  border-radius: 6px;
+}
+ 
+   
+
+  
 .thumb {
   position: relative;
   border: 1px solid #ccc;

@@ -10,11 +10,12 @@
         <div class="panel-container">
 
             <h1>Panel de Funcionarios</h1>
-                <p class="usuario">Bienvenido <span id="usuarioNombre"></span></p>
+                <p class="usuario">Bienvenido <span id="usuarioNombre"></span>
+                (<span id="usuarioRol"></span>)</p>
 
             <div class="menu-grid">
 
-                <button onclick="irInforme()">📄 Elaborar Informe</button>
+                <button onclick="nuevoInforme()">📄 Elaborar Informe</button>
 
                 <button onclick="listarInformes()">📑 Listar Informes</button>
 
@@ -31,5 +32,6 @@
                 <button class="logout" onclick="logout()">Cerrar sesión</button>
 
             </div>
+    <script src="/js/panel.js"></script>
     </body>
 </html>

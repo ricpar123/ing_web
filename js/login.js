@@ -13,6 +13,7 @@ function login() {
     }
 
     let _body = {userid: nombreUsuario, clave: claveUsuario};
+    console.log("nombre clave", nombreUsuario, claveUsuario);
 
 
     fetch(`${API_BASE}/usuarios/log`, 
@@ -28,6 +29,13 @@ function login() {
             return;
         } else {
             rolUsuario = data.usuario.rol;
+            nombreUsuario = data.usuario.userid[0];
+            console.log("rol nombre", rolUsuario, nombreUsuario);
+
+            sessionStorage.setItem("usuario", JSON.stringify({
+                nombre: nombreUsuario,
+                rol: rolUsuario
+            }));
           
 
             if(rolUsuario === 'admin'){
@@ -35,6 +43,7 @@ function login() {
             } else {
                 window.open('/vistas/cambioScreen.html');
             }
+            
         }
 
     })
