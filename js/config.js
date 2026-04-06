@@ -1,1 +1,1 @@
-window.API_BASE = "http://192.168.100.66:8081";
+window.API_BASE = "http://localhost:8081";

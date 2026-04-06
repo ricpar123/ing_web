@@ -51,7 +51,7 @@
       console.log("ID:", id, "type", typeof id);
 
       try{
-        const resp = await fetch( `http://localhost:8081/calibraciones/calibracion/${id}`);
+        const resp = await fetch( `${API_BASE}/calibraciones/calibracion/${id}`);
         const data = await resp.json();
         console.log("data", data);
         if (!data.ok){ alert("No se pudo cargar el certificado");

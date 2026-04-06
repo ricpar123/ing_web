@@ -1,4 +1,4 @@
-const API_BASE = "http://192.168.100.66:8081";
+
 
 const tbody = document.querySelector("#tablaClientes tbody");
 const msg = document.getElementById("msgClientes");

@@ -1,6 +1,5 @@
 
 
-
 Notification.requestPermission(function(status) {
     console.log('Notification permission status:', status);
 });
@@ -42,7 +41,7 @@ let usuarios = [];
 
 async function fetchUsuarios(){
    
-    const res = await fetch('http://localhost:8081/usuarios', 
+    const res = await fetch(`${API_BASE}/usuarios`, 
         {
             method: "GET",
             
@@ -206,7 +205,7 @@ formulario.addEventListener('submit', async (e) => {
 
         
 
-        const res = await fetch("http://192.168.100.66:8081/informes/informe", {
+        const res = await fetch(`${API_BASE}/informes/informe`, {
             method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -224,13 +223,13 @@ formulario.addEventListener('submit', async (e) => {
     }
 
     async function subirUnaImagen(informeId,file, tipo, index) {
-        
+        console.log("estoy dentro de subirUnaImagen");
            const formData = new FormData();
                        
             formData.append(tipo, file, `${tipo}_${index + 1}.jpg`);
                       
-
-            const res = await fetch(`http://192.168.100.66:8081/informes/informe/${informeId}/imagenes`, {
+        console.log("formData:", formData);
+            const res = await fetch(`${API_BASE}/informes/informe/${informeId}/imagenes`, {
             method: "POST",
                 headers: {
                     "auth": "auth"
@@ -261,6 +260,7 @@ formulario.addEventListener('submit', async (e) => {
             for (let i = 0 ; i < fotosAntes.length; i++ ) {
                 console.log(`Subiendo foto ANTES ${i+1}...` );
                 const data = await subirUnaImagen(informeId, fotosAntes[i], "fotoAntes", i);
+                console.log("estoy antes de resultados");
                 resultados.push(data);
             }
 
@@ -283,3 +283,4 @@ formulario.addEventListener('submit', async (e) => {
 });
         
     
+

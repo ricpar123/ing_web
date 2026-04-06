@@ -187,7 +187,7 @@ function calcularResultados() {
     
 
   try {
-    const res = await fetch("http://192.168.100.66:8081/calibraciones/calibracion", {
+    const res = await fetch(`${API_BASE}/calibraciones/calibracion`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(certificadoFinal)
@@ -203,7 +203,7 @@ function calcularResultados() {
     certificadoFinal.numero = data.numero;
     console.log('certificado numero', certificadoFinal.numero);
     
-    localStorage.setItem("certificado_para_pdf", JSON.stringify(certificadoFinal)
+    sessionStorage.setItem("certificado_para_pdf", JSON.stringify(certificadoFinal)
     );
 
     // opcional: ocultar el botón para evitar doble guardado
