@@ -158,11 +158,11 @@ formulario.addEventListener('submit', async (e) => {
             
            const informeId = data.informeId;
            console.log("Informe guardado con Id:", informeId);
-
+           
            //subir imagenes, si existen
             const dataFotos = await subirImagenesInforme(informeId);
             console.log("Resultado subida de fotos:", dataFotos);
-            alert(`Informe ${data.numero} guardado correctamente`);
+            
 
             //limpiar arrats y previews
             fotosAntes.length = 0;
@@ -228,7 +228,7 @@ formulario.addEventListener('submit', async (e) => {
                        
             formData.append(tipo, file, `${tipo}_${index + 1}.jpg`);
                       
-        console.log("formData:", formData);
+        
             const res = await fetch(`${API_BASE}/informes/informe/${informeId}/imagenes`, {
             method: "POST",
                 headers: {
@@ -241,6 +241,7 @@ formulario.addEventListener('submit', async (e) => {
         if(!res.ok || !data.ok) {
             throw new Error(data.error || `Error subiendo ${tipo} ${index + 1}`);
         }
+        console.log("subir una imagen:", data);
         return data;
 
 
@@ -262,18 +263,21 @@ formulario.addEventListener('submit', async (e) => {
                 const data = await subirUnaImagen(informeId, fotosAntes[i], "fotoAntes", i);
                 console.log("estoy antes de resultados");
                 resultados.push(data);
+                console.log("foto antes:", data);
             }
 
             for (let i = 0 ; i < fotosDespues.length; i++ ) {
                 console.log(`Subiendo foto DESPUES ${i+1}...` );
                 const data = await subirUnaImagen(informeId, fotosDespues[i], "fotoDespues", i);
                 resultados.push(data);
+                console.log("foto despues:", data);
             }
 
             return {
                 ok: true,
                 resultados
             };
+            
         }catch (error) {
             console.error("Error en subirImagenesInforme:", error);
             throw error;
